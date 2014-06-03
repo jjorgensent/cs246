@@ -69,6 +69,7 @@ public class Boldness_1 extends Application {
 	ListView<String> threadList1; 
 	ListView<String> threadList2;
 	TextField runnableTextField;
+	GridPane grid;
 
 	private static Boldness_1 instance;
 	private Stage primaryStage;
@@ -87,6 +88,10 @@ public class Boldness_1 extends Application {
 
 	public Stage getStage() {
 		return this.primaryStage;
+	}
+
+	public GridPane getGridPane() {
+		return this.grid;
 	}
 
 	public void done() {		
@@ -122,9 +127,11 @@ public class Boldness_1 extends Application {
 				try {
 					Runnable r = (Runnable)Class.forName(runnableName).newInstance();
 					thread = new Thread(r);
-					thread.start();
-					thread.setName(runnableName + " " + thread.getName());
+										thread.setName(runnableName + " " + thread.getName());
 					threadList2.getItems().add(thread.getName());
+
+					thread.start();
+
 				} catch (Exception e) {
 					System.out.println("Runnable Error. Cannot Run.");
 				}
@@ -189,7 +196,7 @@ public class Boldness_1 extends Application {
 		instance = this;
 
 		// Sets up the grid
-		GridPane grid = new GridPane();
+		grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setHgap(10);
 		grid.setVgap(10);
